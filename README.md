@@ -22,6 +22,7 @@ We learned Figma and enhanced our knowledge with BootStrap, but the most valuabl
 We haven't finished all the pages, and there is no backend support besides user signup and login. The next step would be finishing up the pages and adding data and backend support.
 
 ## To run the code
-1. Create an virtual environment and activate. Visit https://docs.python.org/3/library/venv.html
-2. Install all dependencies by ```pip install -r requirements.txt```
-3. Run the server by ```python manage.py runserver``` and visit local host: http://127.0.0.1:8000/
+1. Change directory to 'earlybirds'
+2. Create an virtual environment and activate. Visit https://docs.python.org/3/library/venv.html
+3. Install all dependencies by ```pip install -r requirements.txt```
+4. Run the server by ```python manage.py runserver``` and visit local host: http://127.0.0.1:8000/
