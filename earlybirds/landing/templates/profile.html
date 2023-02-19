@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Profile - Early Birds</title>
+        
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.0/lity.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="icon" type="image/x-icon" href="{% static '\img\favicon.png' %}" />
+        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        <div id="layoutDefault">
+            <div id="layoutDefault_content">
+                <main>
+                    <!-- Navbar-->
+                    <nav class="navbar navbar-marketing navbar-expand-lg bg-white navbar-light">
+                        <div class="container px-5">
+                            <a href="{% url 'landing' %}"><img src='{% static "\img\landing\favicon_company_name.png" %}' style="width: 300px;height: 60px;" herf="{% url 'landing' %}"></a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i data-feather="menu"></i></button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto me-lg-5">
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'internships' %}">Internships</a></li>
+                                    {% if request.user.is_authenticated %}
+                                    <li class="nav-item dropdown no-caret">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Profile
+                                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
+                                            <a class="dropdown-item py-3" href="{% url 'profile' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="user"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Overview</div>
+                                                    Progress and achivements
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'skill_detail' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="clipboard"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Skill Details</div>
+                                                    Current level and next step
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'profile' %}#self_assess" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="file-text"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Self-Assesment</div>
+                                                    Get certification and skip levels
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'logout' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="log-out"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Logout</div>
+                                                    Logout
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                
+                                {% if not request.user.is_authenticated %}
+                                
+                                <a class="btn fw-500 ms-lg-4 btn-primary" href="{% url 'register' %}">
+                                    Be Early Birds
+                                    <i class="ms-2" data-feather="arrow-right"></i>
+                                </a>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="col-sm-2" style="position: fixed; left: 0; top: 20%; max-width: 160px; z-index: 99;">
+                        <div class="card">
+                            <div class="list-group list-group-flush small">
+                                <div onclick="switch_profile('overview')">
+                                    <a class="list-group-item list-group-item-action p-3" href="#">
+                                        <i class="fas fa-refular fa-user me-2 text-gray-400"></i></i>
+                                        Overview
+                                    </a>
+                                </div>
+                                <div onclick="switch_profile('skill')">
+                                    <a class="list-group-item list-group-item-action p-3" href="#">
+                                        <i class="fas fa-circle-info fa-solid me-2 text-gray-400"></i>
+                                        Skill Details
+                                    </a>
+                                </div>
+                                <div onclick="switch_profile('assesment')">
+                                    <a class="list-group-item list-group-item-action p-3" href="#self_assess">
+                                        <i class="fas fa-circle-check fa-solid me-2 text-gray-400"></i>
+                                        Assesments
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="bg-light pt-5">
+                        
+                        <div class="container px-5" id="profile-overview" style="display: block;">
+                            <div class="row gx-5 justify-content-center">
+                                <img src="{% static '\img\profile\profile_header.png' %}" style="width: 100%; height: 100%;">
+                                <img class="mb-3" src="{% static '\img\profile\profile_summary.png' %}" style="width: 100%; height: 100%;">
+                                <img class="mb-2" src="{% static '\img\profile\profile_skill_title.png' %}" style="width: 96.5%; height: 100%;">
+                                <div class="accordion shadow mb-5 p-0" id="accordionAuth" style="max-width: 93%;">
+                                    <div class="accordion-item">
+                                        <div class="d-flex align-items-center justify-content-between px-4 pt-5">
+                                            <div class="row mb-3" style="width: 1310px;">
+                                                <div class="col-7"><p class="card-text text-gray-600" style="font-weight: bolder;">Category</p></div>
+                                                <div class="col"><p class="card-text text-gray-600" style="font-weight: bolder; margin-left: 10px;">Level</p></div>
+                                                <div class="col"><p class="card-text text-gray-600" style="font-weight: bolder; margin-left: 20px;">Next</p></div>
+                                                <div class="col"><p class="card-text text-gray-600" style="font-weight: bolder; margin-left: 15px;">Courses</p></div>
+                                                <div class="col"><p class="card-text text-gray-600" style="font-weight: bolder; margin-left: 30px;">Projects</p></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h5 class="accordion-header" id="headingOne"><button class="accordion-button p-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><h4>Front-End Development</h4></button></h5>
+                                        <div class="accordion-collapse collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionAuth"><div onclick="switch_profile('skill')"><img class="ms-2 mb-4" src="{% static '\img\profile\profile_skill_list.png' %}" style="width: 97%;"></div></div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h5 class="accordion-header" id="headingTwo"><button class="accordion-button p-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><h4>Product Design</h4></button></h5>
+                                        <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionAuth"><div class="accordion-body p-4">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h5 class="accordion-header" id="headingThree"><button class="accordion-button p-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><h4>Marketing Strategy</h4></button></h5>
+                                        <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionAuth"><div class="accordion-body p-4">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h5 class="accordion-header" id="headingFour"><button class="accordion-button p-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree"><h4>Data Analysis</h4></button></h5>
+                                        <div class="accordion-collapse collapse" id="collapseFour" aria-labelledby="headingFour" data-bs-parent="#accordionAuth"><div class="accordion-body p-4">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div></div>
+                                    </div>
+                                </div>
+                                <img src="{% static '\img\profile\profile_learning.png' %}" style="width: 100%; height: 100%;">
+                                <img src="{% static '\img\profile\profile_activities.png' %}" style="width: 100%; height: 100%;">
+                                <img src="{% static '\img\profile\profile_mentors.png' %}" style="width: 100%; height: 100%;">
+                                <img class="mb-10" src="{% static '\img\profile\profile_achieve.png' %}" style="width: 100%; height: 100%;">
+                            </div>
+                        </div>
+                        <div class="container px-5" id="profile-skill" style="display: none;">
+                            <div class="row gx-5 justify-content-center">
+                                <img src="{% static '\img\profile\profile_header.png' %}" style="width: 100%; height: 100%;">
+                                <img src="{% static '\img\skill-detail\skill-header.png' %}" style="width: 100%; height: 100%;">
+                                <img class="mb-2 ms-4" src="{% static '\img\skill-detail\skill-courses-projects-title.png' %}" style="width: 100%; height: 100%;">
+                                <div class="row">
+                                    <div class="col mb-2">
+                                        <a class="card post-preview lift" href="#!">
+                                            <img src="{% static '\img\skill-detail\course1.png' %}" alt="..." />
+                                        </a>
+                                    </div>
+                                    <div class="col mb-2">
+                                        <a class="card post-preview lift" href="#!">
+                                            <img src="{% static '\img\skill-detail\intern1.png' %}" alt="..." />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-2">
+                                        <a class="card post-preview" href="#!">
+                                            <img src="{% static '\img\skill-detail\course2.png' %}" alt="..." />
+                                        </a>
+                                    </div>
+                                    <div class="col mb-2">
+                                        <a class="card post-preview lift" href="#!">
+                                            <img src="{% static '\img\skill-detail\intern2.png' %}" alt="..." />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col">
+                                        <a class="card post-preview" href="#!">
+                                            <img src="{% static '\img\skill-detail\course3.png' %}" alt="..." />
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="card post-preview" href="#!">
+                                            <img src="{% static '\img\skill-detail\intern3.png' %}" alt="..." />
+                                        </a>
+                                    </div>
+                                </div>
+                                <img class="mb-10" src="{% static '\img\profile\profile_self_assess.png' %}" id="self_assess" style="width: 100%; height: 100%;">
+                            </div>
+                        </div>
+                        <div class="svg-border-rounded text-dark">
+                            <!-- Rounded SVG Border-->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            <div id="layoutDefault_footer">
+                <footer class="footer pt-10 pb-5 mt-auto bg-dark footer-dark">
+                    <div class="container px-5">
+                        <div class="row gx-5">
+                            <div class="col-lg-3">
+                                <div class="footer-brand">Early Birds</div>
+                                <div class="mb-3">Dream career builder</div>
+                                <div class="icon-list-social mb-5">
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-instagram"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-facebook"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-github"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="row gx-5">
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="text-uppercase-expanded text-xs mb-4">About</div>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-2"><a href="{% url 'team' %}">Team</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-5" />
+                        <div class="row gx-5 align-items-center">
+                            <div class="col-md-6 small">Copyright &copy; Early Birds 2023</div>
+                            <div class="col-md-6 text-md-end small">
+                                <a href="#!">Privacy Policy</a>
+                                &middot;
+                                <a href="#!">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{% static 'scripts.js' %}"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                disable: 'mobile',
+                duration: 600,
+                once: true,
+            });
+        </script>
+        <script>
+            function switch_profile(id){
+                let overview = document.getElementById('profile-overview');
+                let skills = document.getElementById('profile-skill');
+                if(id==='overview'){
+                    overview.style.display='block';
+                    skills.style.display='none';
+                }
+                else{
+                    overview.style.display='none';
+                    skills.style.display='block';
+                }
+
+            };
+        </script>
+    </body>
+</html>

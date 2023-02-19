@@ -1,0 +1,15 @@
+pip~=22.1.1
+cryptography~=39.0.0
+lxml~=4.9.1
+Pillow~=9.1.1
+Jinja2~=3.1.2
+Django~=3.2
+asgiref~=3.5.2
+sqlparse~=0.4.2
+mysqlclient~=2.1.0
+colorama~=0.4.5
+PyYAML~=6.0
+numpy~=1.23.1
+requests~=2.27.1
+setuptools~=58.1.0
+django-crispy-forms~=2.0

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Projects - Early Birds</title>
+        
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.0/lity.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="icon" type="image/x-icon" href="{% static '\img\favicon.png' %}" />
+        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        <div id="layoutDefault">
+            <div id="layoutDefault_content">
+                <main>
+                    <!-- Navbar-->
+                    <nav class="navbar navbar-marketing navbar-expand-lg bg-white navbar-light">
+                        <div class="container px-5">
+                            <a href="{% url 'landing' %}"><img src='{% static "\img\landing\favicon_company_name.png" %}' style="width: 300px;height: 60px;" herf="{% url 'landing' %}"></a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i data-feather="menu"></i></button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto me-lg-5">
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'internships' %}">Internships</a></li>
+                                    {% if request.user.is_authenticated %}
+                                    <li class="nav-item dropdown no-caret">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Profile
+                                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
+                                            <a class="dropdown-item py-3" href="{% url 'profile' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="user"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Overview</div>
+                                                    Progress and achivements
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'skill_detail' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="clipboard"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Skill Details</div>
+                                                    Current level and next step
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'profile' %}#self_assess" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="file-text"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Self-Assesment</div>
+                                                    Get certification and skip levels
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'logout' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="log-out"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Logout</div>
+                                                    Logout
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                
+                                {% if not request.user.is_authenticated %}
+                                
+                                <a class="btn fw-500 ms-lg-4 btn-primary" href="{% url 'register' %}">
+                                    Be Early Birds
+                                    <i class="ms-2" data-feather="arrow-right"></i>
+                                </a>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- Page Header-->
+                    <header class="page-header-ui page-header-ui-dark bg-img-cover overlay overlay-60" style="background-image: url({% static 'landing_bg2.jpg' %})">
+                        <div class="page-header-ui-content position-relative">
+                            <div class="container px-5 text-center">
+                                <div class="row gx-5 justify-content-center">
+                                    <div class="col-lg-8">
+                                        <h1 class="page-header-ui-title mb-3">Virtual Internship Experience Projects</h1>
+                                        <p class="page-header-ui-text mb-0">Practice your course knowledge with our virtual internship experience projects</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="svg-border-rounded text-dark">
+                            <!-- Rounded SVG Border-->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+                        </div>
+                    </header>
+                    <section class="bg-dark py-10">
+                        <div class="container px-5">
+                            <div class="row gx-5 mb-3">
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company1.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company2.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company3.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row gx-5 mb-3">
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company4.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company5.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company6.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row gx-5">
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company7.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company8.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="card post-preview lift" href="#project-list">
+                                        <img src="{% static '\img\projects\company9.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="bg-light py-10" id="project-list">
+                        <div class="container px-5">
+                            <div class="row gx-5">
+                                <div class="input-group input-group-lg mb-5">
+                                    <button class="btn btn-primary-soft dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Entry-Level</button>
+                                    <div class="dropdown-menu animated--fade-in-up">
+                                        <a class="dropdown-item" href="#!">No Experience</a>
+                                        <a class="dropdown-item" href="#!">Entry-Level</a>
+                                        <a class="dropdown-item" href="#!">Intermidiate</a>
+                                        <a class="dropdown-item" href="#!">Advanced</a>
+                                        <a class="dropdown-item" href="#!">Expert</a>
+                                    </div>
+                                    <input class="form-control" type="text" aria-label="Text input with dropdown button" placeholder="Search for tracks, skills, and companies..." />
+                                </div>
+                                <div class="col-md-6 col-xl-4 mb-5">
+                                    <a class="card post-preview lift" href="{% url 'project_detail' %}">
+                                        <img src="{% static '\img\projects\project1.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-xl-4 mb-5">
+                                    <a class="card post-preview lift" href="{% url 'project_detail' %}">
+                                        <img src="{% static '\img\projects\project2.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-xl-4 mb-5">
+                                    <a class="card post-preview lift" href="{% url 'project_detail' %}">
+                                        <img src="{% static '\img\projects\project3.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-xl-4 mb-5">
+                                    <a class="card post-preview lift" href="{% url 'project_detail' %}">
+                                        <img src="{% static '\img\projects\project4.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-xl-4 mb-5">
+                                    <a class="card post-preview lift" href="{% url 'project_detail' %}">
+                                        <img src="{% static '\img\projects\project5.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-xl-4 mb-5">
+                                    <a class="card post-preview lift" href="{% url 'project_detail' %}">
+                                        <img src="{% static '\img\projects\project6.png' %}" alt="..." />
+                                    </a>
+                                </div>
+                            </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination pagination-blog justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#!" aria-label="Previous"><span aria-hidden="true">«</span></a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#!">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                                    <li class="page-item"><a class="page-link" href="#!">12</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#!" aria-label="Next"><span aria-hidden="true">»</span></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="svg-border-rounded text-dark">
+                            <!-- Rounded SVG Border-->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            <div id="layoutDefault_footer">
+                <footer class="footer pt-10 pb-5 mt-auto bg-dark footer-dark">
+                    <div class="container px-5">
+                        <div class="row gx-5">
+                            <div class="col-lg-3">
+                                <div class="footer-brand">Early Birds</div>
+                                <div class="mb-3">Dream career builder</div>
+                                <div class="icon-list-social mb-5">
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-instagram"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-facebook"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-github"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="row gx-5">
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="text-uppercase-expanded text-xs mb-4">About</div>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-2"><a href="{% url 'team' %}">Team</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-5" />
+                        <div class="row gx-5 align-items-center">
+                            <div class="col-md-6 small">Copyright &copy; Early Birds 2023</div>
+                            <div class="col-md-6 text-md-end small">
+                                <a href="#!">Privacy Policy</a>
+                                &middot;
+                                <a href="#!">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{% static '/scripts.js' %}"></script>
+    </body>
+</html>

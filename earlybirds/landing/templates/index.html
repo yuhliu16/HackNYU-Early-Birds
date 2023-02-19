@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Home - Early Birds</title>
+        
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.0/lity.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="icon" type="image/x-icon" href="{% static '\img\favicon.png' %}" />
+        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        <div id="layoutDefault">
+            <div id="layoutDefault_content">
+                <main>
+                    <!-- Navbar-->
+                    <nav class="navbar navbar-marketing navbar-expand-lg bg-white navbar-light">
+                        <div class="container px-5">
+                            <a href="{% url 'landing' %}"><img src='{% static "\img\landing\favicon_company_name.png" %}' style="width: 300px;height: 60px;" herf="{% url 'landing' %}"></a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i data-feather="menu"></i></button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto me-lg-5">
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'internships' %}">Internships</a></li>
+                                    {% if request.user.is_authenticated %}
+                                    <li class="nav-item dropdown no-caret">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Profile
+                                            <i class="fas fa-chevron-right dropdown-arrow"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
+                                            <a class="dropdown-item py-3" href="{% url 'profile' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="user"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Overview</div>
+                                                    Progress and achivements
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'skill_detail' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="clipboard"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Skill Details</div>
+                                                    Current level and next step
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'profile' %}#self_assess" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="file-text"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Self-Assesment</div>
+                                                    Get certification and skip levels
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-divider m-0"></div>
+                                            <a class="dropdown-item py-3" href="{% url 'logout' %}" target="_self">
+                                                <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="log-out"></i></div>
+                                                <div>
+                                                    <div class="small text-gray-500">Logout</div>
+                                                    Logout
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                
+                                {% if not request.user.is_authenticated %}
+                                
+                                <a class="btn fw-500 ms-lg-4 btn-primary" href="{% url 'register' %}">
+                                    Be Early Birds
+                                    <i class="ms-2" data-feather="arrow-right"></i>
+                                </a>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- Page Header-->
+                    <header class="page-header-ui page-header-ui-dark bg-img-cover overlay overlay-80" style="background-image: url({% static "landing_bg2.jpg" %})">
+                        <div class="page-header-ui-content py-5 position-relative">
+                            <div class="container px-5">
+                                <div class="row gx-5 justify-content-center">
+                                    <div class="col-xl-8 col-lg-10 text-center">
+                                        <div data-aos="fade-up">
+                                            <h1 class="page-header-ui-title">We are Your Dream Career Guides</h1>
+                                            <p class="page-header-ui-text">We help you start, explore, and develop your career with all-level courses and virtual internship projects step by step.</p>
+                                        </div>
+                                        <a class="btn btn-primary fw-500" href="#get-started" data-aos="fade-up" data-aos-delay="100">Get Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="svg-border-rounded text-white">
+                            <!-- Rounded SVG Border-->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+                        </div>
+                    </header>
+                    <section class="bg-white py-10" id="get-started">
+                        <div class="container px-5">
+                            <div class="row gx-5 text-center">
+                                <div class="col-lg-4 mb-5 mb-lg-0">
+                                    <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i data-feather="book-open"></i></div>
+                                    <h2>Professional</h2>
+                                    <p class="mb-0">We offer industrial projects and selected internships in detailed tracks</p>
+                                </div>
+                                <div class="col-lg-4 mb-5 mb-lg-0">
+                                    <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i data-feather="chevrons-up"></i></div>
+                                    <h2>Progress</h2>
+                                    <p class="mb-0">Follow our progressively more difficult curriculum for a more challenging internship</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="icon-stack icon-stack-xl bg-gradient-primary-to-secondary text-white mb-4"><i data-feather="archive"></i></div>
+                                    <h2>Archive</h2>
+                                    <p class="mb-0">Track your skill set levels, provide certifications to employers, and receive recommendations for next step</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="svg-border-rounded text-light">
+                            <!-- Rounded SVG Border-->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+                        </div>
+                    </section>
+                    <section class="bg-light py-10">
+                        <div class="container px-5">
+                            <img class="mb-5" data-aos="fade-up" src='{% static "img\landing\flowchart.png" %}' style = "width: 100%;">
+                            <div class="row gx-5 justify-content-center z-1">
+                                <div class="col-lg-8" data-aos="fade-up">
+                                    <div class="card lift mb-n15">
+                                        <div class="card-body p-2">
+                                            <div class="video overlay bg-img-cover rounded" style="background-image: url('{% static "landing_bg_3.png" %}')">
+                                                <a class="video-link" href="#!" data-lity=""><i class="fas fa-play"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="bg-img-cover overlay overlay-80 py-10" style="background-image: url('{% static "landing_bg.jpg" %}')">
+                        <div class="container px-5 position-relative">
+                            <div class="row gx-5 justify-content-center">
+                                <div class="col-lg-10">
+                                    <div class="display-6 text-center py-10 my-10 text-white">
+                                        Effective 
+                                        <span class="text-primary">career planning</span> 
+                                        is to help students match 
+                                        <span class="text-primary">school knowledge</span>
+                                        with 
+                                        <span class="text-primary">real tasks </span>
+                                        sooner before bewilderment  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="bg-light py-10">
+                        <div class="container px-5 z-1">
+                            <div class="row my-8 justify-content-center">
+                                <div class="col-lg-10 text-center">
+                                    <h2 class="mb-5">Find your interest in different tracks</h2>
+                                    <img class="mb-10" data-aos="fade-up" src='{% static "img\landing\tracks.png" %}' style = "width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row my-8 justify-content-center">
+                                <div class="col-lg-10 text-center">
+                                    <h2 class="mb-5">Practice your skills in virtual internship experience projects</h2>
+                                </div>
+                            </div>
+                            <div class="card mb-5" data-aos="fade-right">
+                                <div class="row g-0">
+                                    <div class="col-md-7"><img class="img-fluid" src='{% static "img\landing\landing_page_project_1.jpg" %}' alt="..." style="height: 100%;"/></div>
+                                    <div class="col-md-5">
+                                        <div class="card-body d-flex align-items-center justify-content-center h-100 flex-column">
+                                            <img class="mb-1" src='{% static "img\landing\landing_page_project_1_company.jpg" %}' style="width: 25%; height: 20%;">
+                                            <h3 class="card-title fw-bold text-uppercase mb-4">Data Analysis</h3>
+                                            <div class="justify-content-start mx-1">
+                                            <p class="card-text fw-light mb-4"><span class="fw-bold">Level:</span> No Experience Needed</p>
+                                            <p class="card-text fw-light mb-4"><span class="fw-bold">Prerequisites:</span> N/A</p>
+                                            <p class="card-text fw-light mb-4"><span class="fw-bold">Tools:</span> Tableau, Power BI</p>
+                                            <p class="card-text fw-light mb-4"><span class="fw-bold">Completion:</span> Gain certifications and unlock 
+                                                <span class="text-primary">Entry-level</span> projects and internships with 
+                                                <span class="text-primary">Tableau</span>
+                                                 and 
+                                                <span class="text-primary">Power BI</span></p>
+                                            </div>
+                                            <a class="btn btn-outline-dark fw-500" href="#!">View Project Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-5" data-aos="fade-left">
+                                <div class="row g-0">
+                                    <div class="col-md-5 order-1 order-md-0">
+                                        <div class="card-body d-flex align-items-center justify-content-center h-100 flex-column">
+                                            <img class="mb-1" src='{% static "img\landing\landing_page_project_2_company.jpg" %}' style="width: 25%; height: 20%;">
+                                            <h3 class="card-title fw-bold text-uppercase mb-4">Software Engineer</h3>
+                                            <div class="justify-content-start mx-1">
+                                            <p class="card-text fw-light mb-4"><span class="fw-bold">Level:</span> Intermidiate</p>
+                                            <p class="card-text fw-light mb-4"><span class="fw-bold">Prerequisites:</span> Must complete one preceding project or get self-certificated in your profile</p>
+                                            <p class="card-text fw-light mb-4"><span class="fw-bold">Tools:</span> Spring-Java</p>
+                                            <p class="card-text fw-light mb-4"><span class="fw-bold">Completion:</span> Gain certifications and unlock <span class="text-primary">Advanced </span>
+                                                projects and internships with <span class="text-primary">Spring-Java</span></p>
+                                            </div>
+                                            <a class="btn btn-outline-dark fw-500" href="#!">View Project Details</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 order-0 order-md-1"><img class="img-fluid" src='{% static "img\landing\landing_page_project_2.jpg" %}' alt="..." style="height: 100%;"/></div>
+                                </div>
+                            </div>
+                            <div class="card" data-aos="fade-right">
+                                <div class="row g-0">
+                                    <div class="col-md-7"><img class="img-fluid" src='{% static "img\landing\landing_page_project_3.jpg" %}' alt="..." style="height: 100%;" /></div>
+                                    <div class="col-md-5">
+                                        <div class="card-body d-flex align-items-center justify-content-center h-100 flex-column">
+                                            <img class="mb-1" src='{% static "img\landing\landing_page_project_3_company.jpg" %}' style="width: 25%; height: 20%;">
+                                            <h3 class="card-title fw-bold text-uppercase mb-4">Markets-Sales & Trading</h3>
+                                            <div class="justify-content-start mx-1">
+                                                <p class="card-text fw-light mb-4"><span class="fw-bold">Level:</span> Advanced</p>
+                                                <p class="card-text fw-light mb-4"><span class="fw-bold">Prerequisites:</span> Must complete one preceding project or get self-certificated in your profile</p>
+                                                <p class="card-text fw-light mb-4"><span class="fw-bold">Tools:</span> Business Management, Risk Management, Compliance & Operational Risk</p>
+                                                <p class="card-text fw-light mb-4"><span class="fw-bold">Completion:</span> Gain certifications and unlock 
+                                                    <span class="text-primary">Expert</span> projects and internships with 
+                                                    <span class="text-primary">Markets Sales & Trading</span></p>
+                                            </div>
+                                            <a class="btn btn-outline-dark fw-500" href="#!">View Project Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="svg-border-rounded text-white mt-n15">
+                            <!-- Rounded SVG Border-->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+                        </div>
+                    </section>
+                    <section class="bg-white py-10">
+                        <div class="container">
+                            <div class="row gx-5 justify-content-center">
+                                <div class="col-xl-14 col-lg-16 col-md-14 text-center my-5 py-5">
+                                    <h2>Looking for an internship?</h2>
+                                    <p class="lead text-gray-500 mb-4">Check these selected internship and how well it fits your skill sets.</p>
+                                    <div id="carouselExample" class="carousel slide">
+                                        <div class="carousel-inner">
+                                          <div class="carousel-item active">
+                                            <div class="cards-wrapper">
+                                                <div class="card">
+                                                  <img src='{% static "img\landing\internship_1.png" %}' class="card-img-top" alt="...">
+                                                  <div class="card-body">
+                                                    <a class="btn btn-outline-dark fw-500" href="#!">Find Suitability</a>
+                                                  </div>
+                                                </div>
+                                                <div class="card">
+                                                  <img src='{% static "img\landing\internship_2.png" %}' class="card-img-top" alt="...">
+                                                  <div class="card-body">
+                                                    <a class="btn btn-outline-dark fw-500" href="#!">Find Suitability</a>
+                                                  </div>
+                                                </div>
+                                                <div class="card">
+                                                  <img src='{% static "img\landing\internship_3.png" %}' class="card-img-top" alt="...">
+                                                  <div class="card-body">
+                                                    <a class="btn btn-outline-dark fw-500" href="#!">Find Suitability</a>
+                                                  </div>
+                                                </div>
+                                                <div class="card">
+                                                    <img src='{% static "img\landing\internship_4.png" %}' class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <a class="btn btn-outline-dark fw-500" href="#!">Find Suitability</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                          <div class="carousel-item">
+                                            <div class="cards-wrapper">
+                                                <div class="card">
+                                                  <img src='{% static "img\landing\internship_1.png" %}' class="card-img-top" alt="...">
+                                                  <div class="card-body">
+                                                    <a class="btn btn-outline-dark fw-500" href="#!">Find Suitability</a>
+                                                  </div>
+                                                </div>
+                                                <div class="card">
+                                                  <img src='{% static "img\landing\internship_2.png" %}' class="card-img-top" alt="...">
+                                                  <div class="card-body">
+                                                    <a class="btn btn-outline-dark fw-500" href="#!">Find Suitability</a>
+                                                  </div>
+                                                </div>
+                                                <div class="card">
+                                                  <img src='{% static "img\landing\internship_3.png" %}' class="card-img-top" alt="...">
+                                                  <div class="card-body">
+                                                    <a class="btn btn-outline-dark fw-500" href="#!">Find Suitability</a>
+                                                  </div>
+                                                </div>
+                                                <div class="card">
+                                                    <img src='{% static "img\landing\internship_4.png" %}' class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <a class="btn btn-outline-dark fw-500" href="#!">Find Suitability</a>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                        </div>
+                                        <button class="carousel-control-prev ms-2" style="background-color: #d5dcfc;width: 5vh;height: 5vh;border-radius: 50%;top: 50%;transform: translateY(-50%);" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                          <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next me-2" style="background-color: #d5dcfc;width: 5vh;height: 5vh;border-radius: 50%;top: 50%;transform: translateY(-50%);" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                          <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="svg-border-rounded text-dark">
+                            <!-- Rounded SVG Border-->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor"><path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path></svg>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            <div id="layoutDefault_footer">
+                <footer class="footer pt-10 pb-5 mt-auto bg-dark footer-dark">
+                    <div class="container px-5">
+                        <div class="row gx-5">
+                            <div class="col-lg-3">
+                                <div class="footer-brand">Early Birds</div>
+                                <div class="mb-3">Dream career builder</div>
+                                <div class="icon-list-social mb-5">
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-instagram"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-facebook"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-github"></i></a>
+                                    <a class="icon-list-social-link" href="#!"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="row gx-5">
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="text-uppercase-expanded text-xs mb-4">About</div>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-2"><a href="{% url 'team' %}">Team</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-5" />
+                        <div class="row gx-5 align-items-center">
+                            <div class="col-md-6 small">Copyright &copy; Early Birds 2023</div>
+                            <div class="col-md-6 text-md-end small">
+                                <a href="#!">Privacy Policy</a>
+                                &middot;
+                                <a href="#!">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src='{% static "scripts.js" %}'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.0/lity.min.js"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                disable: 'mobile',
+                duration: 600,
+                once: true,
+            });
+        </script>
+    </body>
+</html>
